@@ -74,28 +74,45 @@ Where $(a)$ follows because $p_X$ is an even function when $X$ has a Gaussian di
 
 \subsection{$X \sim {\cal U}(x|0, 2\pi)$}
 
-Take $Y_3 = f(X) = \sin(X)$. This gives, $\frac{dy}{dx} = \cos(x) = \sqrt{1 - y^2}$  and $f^{-1}(y) = \pm \sqrt{y}$. Note $f^{-1}(y)$ is multivalued and has an infinite number of inverses. However, $p_X(x) = 0$ for $x \not\in [0, 2\pi]$ and so only three of the inverses produce non-zero terms: ${f_1}^{-1}(y) = \sin^{-1}{y}$ ,  ${f_2}^{-1}(y) = \pi - \sin^{-1}{y}$, and ${f_3}^{-1}(y) = 2\pi + \sin^{-1}{y}$.
+Take $Y_3 = f(X) = \sin(X)$. This gives, $\frac{dy}{dx} = \cos(x) = \sqrt{1 - y^2}$  and $f^{-1}(y) = \pm \sqrt{y}$. Note $f^{-1}(y)$ is multivalued and has an infinite number of inverses. However, $p_X(x) = 0$ for $x \not\in [0, 2\pi]$ and so only three of the inverses produce non-zero terms: 
 
-  
-\begin{alignat*}{3}
-  p_{Y_2}(y)  
-  &= \left. \frac {p_X(x)} {\left| \frac {dy} {dx} \right|} \right|_{x = {f_1} ^ {-1} (y)}
-  && + \left. \frac {p_X (x)} {\left| \frac {dy} {dx} \right|} \right|_{x = {f_2} ^ {-1} (y)}
-  && + \left. \frac {p_X (x)} {\left| \frac {dy} {dx} \right|} \right|_{x = {f_3} ^ {-1} (y)} \\
-  &= \frac {p_X ( \sin^{-1} y )} {\sqrt{1 - y^2}}
-  &&+ \frac {p_X ( \pi - \sin^{-1} y )} {\sqrt{1 - y^2}}
-  &&+ \frac {p_X ( 2\pi + \sin^{-1} y )} {\sqrt{1 - y^2}} \\
-  &= \frac {p_X ( y ) && + 1 && + p_X ( -y )} {\sqrt{1 - y^2}}
-\end{alignat*}
+$$
+{f_1}^{-1}(y) = \sin^{-1}{y}\mbox{, }{f_2}^{-1}(y) = \pi - \sin^{-1}{y}\mbox{, }{f_3}^{-1}(y) = 2\pi + \sin^{-1}{y}
+$$
 
-  
-\begin{equation}
- p_{Y_3}(y) =
+Notice that the range of $Y$ is $[-1, 1]$ Using the Jacobian method and summing over the solutions for $f_1$, $f_2$ and $f_3$ gives:
+
+\begin{align}
+  p_{Y_3}(y) &= \frac {p_X ( \sin^{-1} y )} {\sqrt{1 - y^2}}
+  + \frac {p_X ( \pi - \sin^{-1} y )} {\sqrt{1 - y^2}}
+  + \frac {p_X ( 2\pi + \sin^{-1} y )} {\sqrt{1 - y^2}} \\
+  p_{Y_3}(y) &= \frac {p_X ( y ) + 1/2\pi + p_X ( -y )} {\sqrt{1 - y^2}} \\
+  p_{Y_3}(y) &=
   \begin{cases} 
-    \frac 1 {\sqrt{2 \pi y}} e ^ { - y /2} &\mbox{if } y \ge 0 \\
+    \frac 1 {\pi\sqrt{1 - y^2}} &\mbox{if } -1 < y < 1 \\
     \, 0 &\mbox{otherwise}
   \end{cases}
+\end{align}
+
+Now consider the PDF of $Y_4 = \min{(Y_3, 0.7)}$.
+
+\begin{equation}
+  p_{Y_4}(Y_4 \ge y) =
+  \begin{cases} 
+    P_{Y_3}(Y_3 \ge y) &\mbox{if } y < 0.7 \\
+    \, 1 &\mbox{otherwise}
+  \end{cases}
 \end{equation}
+
+Therefore the PDF of $Y_4$ is identical to that of $Y_3$ for $y < 0.7$, has a delta function at $y = 0.7$ and is zero for $Y > 0.7$. There is a non-zero probability of samples being exactly $0.7$ which is given by:
+
+$$
+  p_{Y_4}(0.7) = 
+  \int _ {0.7} ^ 1 p_{Y_3}(y) \, dy = 
+  \int _ {sin^{-1}(0.7)} ^ {\pi - sin^{-1}(0.7)} p_X(x) dx =
+  \frac 1 2 - \frac {sin^{-1}(0.7)} \pi \approx
+  0.2532
+$$
 
 \section{Generating an exponential random variable with the inverse CDF method.}
 
