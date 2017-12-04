@@ -1,11 +1,17 @@
-function plot_ksdensity (values, pdf)
+function plot_ksdensity (values, pdf, bw)
 % plot_ksdensity  Plots ksdensity approximation of pdf overlayed
 %   with the pdf defined by pdf.
     
     global graph_max t;
+    
+    if ~exist('bw','var')
+        [f,xi] = ksdensity(values);
+    else
+        [f, xi] = ksdensity(values, 'Bandwidth', bw);
+    end
+ 
     hold on;
     
-    [f,xi] = ksdensity(values);
     
     plot(xi, f, 'LineWidth', 2);
     plot(t, pdf(t), 'LineWidth', 2);
