@@ -34,6 +34,16 @@ Date: ????????????????????????????
 
 \section{Uniform and normal random variables.}
 
+Figure \ref{fig:gaussian-pdf} shows a Gaussian distribution in the form of a normalised histogram and a \code{ksdensity} estimate of the PDF. The Gaussian kernal is very smooth and so the
+
+\begin{figure}[!htb]
+\includegraphics[width=\textwidth]{figures/gaussian-pdf.pdf}
+  \caption{Gaussian distribution with zero mean and unit variance.}
+  \label{fig:gaussian-pdf}
+\end{figure}
+
+\subsection{Distribution of histogram counts}
+
 When creating a histogram plot of random samples taken from a distribution, the probability of the histogram is given by:
 
 \begin{equation}
@@ -41,7 +51,41 @@ When creating a histogram plot of random samples taken from a distribution, the 
 \end{equation}
 
 Where $N = \sum n_j$. For the $j^{th}$ sample from the distribution there is a probability, $p_j$, that the sample will fall into the $j^{th}$ bin.
-Therefore, when $N$ samples are taken from the distribution the probability that there are $n_j$ in the $j^{th}$ bin is given by the binomial distribution
+Therefore, when $N$ samples are taken from the distribution the probability that there are $n_j$ in the $j^{th}$.
+
+Consider the probability of the first histogram bin:
+
+\begin{equation}
+	p(n_1) = \binom{N}{n_1} p_1^{n_1} (1-p_1)^{n_1}
+\end{equation}
+
+
+
+For a uniform distribution the histogram count data (the heights of unnormalized bars on a histogram plot) will be multinomially distributed. The probability $p_j$ of a sample  $x^{(i)}$ lying in a bin is equal to the width of the bin divided by the total width of the distribution. Therefore, $p_j = 1/J$ where $J$ is the total number of bins.
+
+For a histogram of samples of a uniform random variable.
+
+\begin{itemize}
+\item The mean bar height  $\mu = NJ$
+\item The variance in bar height $\sigma^2 = NJ(1-J)$.
+\end{itemize}
+
+
+The ratio $\frac \sigma \mu = \sqrt \frac{(1-J)}{NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
+
+
+Plots of histograms for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  and $\pm 3$ standard deviation lines:
+
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{figures/uniform-bar-distribution.pdf}
+  \caption{Histograms of uniformly distributed samples showing mean and standard deviation lines.}
+  \label{fig:hist-dist}
+\end{figure}
+
+
+All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
+
 
 \section{Functions of random variables}
 
@@ -114,6 +158,12 @@ $$
   0.2532
 $$
 
+\begin{figure}[!htb]
+\includegraphics[width=\textwidth]{figures/uniform-sine-transform.pdf}
+  \caption{???????????????}
+  \label{fig:sine-function}
+\end{figure}
+
 \section{Generating an exponential random variable with the inverse CDF method.}
 
 An exponential distribution is defined by the PDF:
@@ -161,12 +211,11 @@ Figure \ref{fig:mote-mean} shows a log-log plot of the mean squared error of the
 The graph is created by averaging 20 estimations from separate sets of samples which smooths the plot.
 The dashed line on the graph shows the theoretical variance of the estimator.
 
-\begin{figure}[htb]
-\includegraphics[width=\textwidth]{figures/mote-carlo-mean-estimator.pdf}
+\begin{figure}[!htb]
+\includegraphics[width=\paperwidth]{figures/mote-carlo-mean-estimator.pdf}
   \caption{???????????????}
   \label{fig:mote-mean}
 \end{figure}
-
 
 \end{document}
 
