@@ -36,43 +36,44 @@ Date: ????????????????????????????
 
 Figure \ref{fig:gaussian-pdf} shows a Gaussian distribution in the form of a normalised histogram and a \code{ksdensity} estimate of the PDF. The Gaussian kernal is very smooth and so the
 
-\begin{figure}[!htb]
-\includegraphics[width=\textwidth]{figures/gaussian-pdf.pdf}
+\begin{figure}[H]
+  \fbox{\includegraphics[width=\textwidth]{figures/gaussian-pdf.pdf}}
   \caption{Gaussian distribution with zero mean and unit variance.}
   \label{fig:gaussian-pdf}
 \end{figure}
 
 \subsection{Distribution of histogram counts}
 
-When creating a histogram plot of random samples taken from a distribution, the probability of the histogram is given by:
+When creating a histogram plot of random samples taken from a distribution, the unnormalised heights of histogram bars will be multinomially distributed. The PDF is given by:
 
 \begin{equation}
     p(n_1, n_2, \ldots, n_J) = \frac {N!} {n_1! n_2! \ldots n_J!} p_1^{n_1} p_2^{n_2} \ldots p_j^{n_J}
 \end{equation}
-
-Where $N = \sum n_j$. For the $j^{th}$ sample from the distribution there is a probability, $p_j$, that the sample will fall into the $j^{th}$ bin.
-Therefore, when $N$ samples are taken from the distribution the probability that there are $n_j$ in the $j^{th}$.
-
-Consider the probability of the first histogram bin:
+Consider the case of three histogram bins, the probability of the first histogram bin is given by the binomial distribution where $p_1$ is the probability of a random sample falling into the first bin:
 
 \begin{equation}
-	p(n_1) = \binom{N}{n_1} p_1^{n_1} (1-p_1)^{n_1}
+	p(n_1) = \binom {N} {n_1} \, p_1^{n_1} (1-p_1)^{N - n_1}
 \end{equation}
 
+The probability of the first two histogram bins can be calculated using conditional probabilities where $p(n_2|n_1)$ is the probability of exactly $n_2$ of the $(N-n_1)$ samples not in the first bin being in the second bin:
+\begin{align}
+	p(n_1, n_2) &= p(n_2 | n_1) \, p(n_1) \nonumber \\
+    			&= \binom {N {-} n_1}{n_2} \, 
+                	\left( \frac {p_2} {1 - p_1} \right)^{n_2} 
+                	\left( 1 - \frac {p_2} {1-p_1} \right) ^ {N - n_1 - n_2} 
+                	\cdot \binom {N}{n_1} \, p_1^{n_1} (1-p_1)^{N - n_1} \nonumber \\
+                &= \frac {N\,!} {(N - n_1 - n_2)!\, n_1!\, n_2!} \,
+                	p_1^{n_1} p_2^{n_2} (1 - p_1 - p_2)^{N - n_1 - n_2}
+\end{align}
+Therefore, the probablitiy of the histogram is:
+\begin{align}
+	p(n_1, n_2, n_3) &= p(n_3 | n_1, n_2) p(n_1, n_2) \nonumber \\
+                     &= 1 \cdot p(n_1, n_2) \nonumber \\
+                     &= \frac {N\,!} {n_3!\, n_1!\, n_2!} \, p_1^{n_1} p_2^{n_2} p_3^{n_3}
+\end{align}
+Because $\sum p_i = 1$ and $\sum n_i = N$. Generalising this to $J$ histogram bins gives the multinomial distribution. The terms $p_j^{n_j}$ and $n_1!$ arise from the binomial distribution of which the multinomial distribution is a generalised form. 
 
-
-For a uniform distribution the histogram count data (the heights of unnormalized bars on a histogram plot) will be multinomially distributed. The probability $p_j$ of a sample  $x^{(i)}$ lying in a bin is equal to the width of the bin divided by the total width of the distribution. Therefore, $p_j = 1/J$ where $J$ is the total number of bins.
-
-For a histogram of samples of a uniform random variable.
-
-\begin{itemize}
-\item The mean bar height  $\mu = NJ$
-\item The variance in bar height $\sigma^2 = NJ(1-J)$.
-\end{itemize}
-
-
-The ratio $\frac \sigma \mu = \sqrt \frac{(1-J)}{NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
-
+For a uniform distribution the probability $p_j$ of a sample  $x^{(i)}$ lying in the the $j^{th}$ bin is equal to the width of the bin divided by the total width of the distribution, i.e.  $p_j = 1/J$. Each of the histogram bins have identical probabilities with mean bar height  $\mu = NJ$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
 
 Plots of histograms for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  and $\pm 3$ standard deviation lines:
 
@@ -82,7 +83,6 @@ Plots of histograms for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  
   \caption{Histograms of uniformly distributed samples showing mean and standard deviation lines.}
   \label{fig:hist-dist}
 \end{figure}
-
 
 All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
 
