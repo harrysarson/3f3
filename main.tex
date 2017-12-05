@@ -77,9 +77,6 @@ Because $\sum p_i = 1$ and $\sum n_i = N$. Generalizing this to $J$ histogram bi
 
 For a uniform distribution the probability $p_j$ of a sample  $x^{(i)}$ lying in the the $j^{th}$ bin is equal to the width of the bin divided by the total width of the distribution, i.e.  $p_j = 1/J$. Each of the histogram bins have identical probabilities with mean bar height  $\mu = NJ$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
 
-Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean and $\pm 3$ standard deviation lines. All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
-
-
 \subsection{Gaussian Distribution}
 
 For Gaussian distributions, $p_j$ varies across the distribution.
@@ -91,10 +88,10 @@ For Gaussian distributions, $p_j$ varies across the distribution.
 
 The mean bar height  $\mu = N$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
 
-Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean and $\pm 3$ standard deviation lines. All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
+Figure \ref{fig:hist-dist} shows histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean and $\pm 3$ standard deviation lines. All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{figures/uniform-bar-distribution.pdf}
+	\fbox{\includegraphics[width=\textwidth]{figures/hist-dist.pdf}}
   \caption{Histograms of uniformly distributed samples showing mean and standard deviation lines.}
   \label{fig:hist-dist}
 \end{figure}
@@ -109,7 +106,13 @@ Take ${Y_1} = f(X) = aX + b$, and so $f^{-1}(y) = (y - b) / a$ .
 p_{Y_1}(y) &= \left. \frac {p_X(x)} {\frac {dy} {dx}} \right|_{x = f^ {-1} (y)} \nonumber \\
 p_{Y_1}(y) &= \frac 1 a  {p_X \left (\frac {y - b} a \right)}
 \end{align}
-Therefore $Y_1 \sim {\cal N}(y|b, a^2)$ and so a linear function of a Gaussian random variable with zero mean and unit variance creates a general Gaussian density with non-zero mean and non-unity variance.
+Therefore $Y_1 \sim {\cal N}(y|b, a^2)$ and so a linear function of a Gaussian random variable with zero mean and unit variance creates a general Gaussian density with non-zero mean and non-unity variance, the transformed PDF is shown in figure \ref{fig:gaussian-linear-transform}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/gaussian-linear-transform.pdf}
+  \caption{Histogrammed samples from a ${\cal N}(x|0,1)$ transformed using $f(x) = 2x + 1$.}
+  \label{fig:guassian-linear-transform}
+\end{figure}
 
 Now take $Y_2 = f(x)=x^2$. Therefore, $\frac{dy}{dx} = 2x$  and $f^{-1}(y) = \pm \sqrt{y}$. Note $f^{-1}(y)$ is multivalued with ${f_1}^{-1}(y) = \sqrt{y}$ and ${f_2}^{-1}(y) = -\sqrt{y}$.
 
