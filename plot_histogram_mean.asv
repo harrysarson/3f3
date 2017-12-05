@@ -2,7 +2,7 @@ function plot_histogram_mean( pdf, cdf, generateRand, binPosition )
 
 bin_widths = linspace(0, 2.5 * (2 + binPosition), 100);
 N = 1000;
-repeats = 1;
+repeats = 10;
 
 means = zeros(size(bin_widths));
 var = zeros(size(bin_widths));
@@ -27,14 +27,14 @@ hold on;
 
 a = max(0.5, bin_widths(end) / 3);
 
-plot([0 a], [0 pdf(binPosition) * a], '--k');
 plot(bin_widths, means);
 plot(bin_widths, mean(counts, 1));
+plot([0 a], [0 pdf(binPosition) * a], '--k');
 
 xlabel("width of bin");
-ylabel("Expected proportion of samples");
-legend(["Expected", "Measured", "\delta p(x)"], 'Location', 'best');
-title(sprintf('Histogram bar centre  x = %g in Gaussian distrubution', binPosition));
+ylabel("samples / N");
+legend(["expected", "\sigma", "$\delta p(x)$"], 'Location', 'best');
+title(sprintf('Histogram bar at x = %g in Gaussian distrubution', binPosition));
 
 end
 
