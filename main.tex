@@ -71,11 +71,11 @@ Therefore, the probablitiy of the histogram is:
                      &= 1 \cdot p(n_1, n_2) \nonumber \\
                      &= \frac {N\,!} {n_3!\, n_1!\, n_2!} \, p_1^{n_1} p_2^{n_2} p_3^{n_3}
 \end{align}
-Because $\sum p_i = 1$ and $\sum n_i = N$. Generalising this to $J$ histogram bins gives the multinomial distribution. The terms $p_j^{n_j}$ and $n_1!$ arise from the binomial distribution of which the multinomial distribution is a generalised form. 
+Because $\sum p_i = 1$ and $\sum n_i = N$. Generalizing this to $J$ histogram bins gives the multinomial distribution. The terms $p_j^{n_j}$ and $n_1!$ arise from the binomial distribution of which the multinomial distribution is a generalized form. 
 
 For a uniform distribution the probability $p_j$ of a sample  $x^{(i)}$ lying in the the $j^{th}$ bin is equal to the width of the bin divided by the total width of the distribution, i.e.  $p_j = 1/J$. Each of the histogram bins have identical probabilities with mean bar height  $\mu = NJ$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
 
-Plots of histograms for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  and $\pm 3$ standard deviation lines:
+Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  and $\pm 3$ standard deviation lines:
 
 
 \begin{figure}[H]
