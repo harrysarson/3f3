@@ -14,5 +14,11 @@ function print_fig(file_name)
         axes(i).Position = [left bottom ax_width ax_height];
     end
         
+    set(gcf,'Units','Inches');
+
+    pos = get(gcf,'Position');
+
+    set(gcf,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+        
     print(gcf, '-dpdf', strrep(file_name, '.', '_'));
 end
