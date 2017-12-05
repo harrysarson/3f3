@@ -32,9 +32,9 @@ Date: ????????????????????????????
 
 \pagebreak
 
-\section{Uniform and normal random variables.}
+\section{Uniform and Gaussian random variables.}
 
-Figure \ref{fig:gaussian-pdf} shows a Gaussian distribution in the form of a normalised histogram and a \code{ksdensity} estimate of the PDF. The Gaussian kernal is very smooth and so the
+Figure \ref{fig:gaussian-pdf} shows a Gaussian distribution in the form of a normalised histogram and a \code{ksdensity} estimate of the PDF. The Gaussian kernel is very smooth and so the
 
 \begin{figure}[H]
   \fbox{\includegraphics[width=\textwidth]{figures/gaussian-pdf.pdf}}
@@ -65,7 +65,7 @@ The probability of the first two histogram bins can be calculated using conditio
                 &= \frac {N\,!} {(N - n_1 - n_2)!\, n_1!\, n_2!} \,
                 	p_1^{n_1} p_2^{n_2} (1 - p_1 - p_2)^{N - n_1 - n_2}
 \end{align}
-Therefore, the probablitiy of the histogram is:
+Therefore, the probability of the histogram is:
 \begin{align}
 	p(n_1, n_2, n_3) &= p(n_3 | n_1, n_2) p(n_1, n_2) \nonumber \\
                      &= 1 \cdot p(n_1, n_2) \nonumber \\
@@ -73,18 +73,31 @@ Therefore, the probablitiy of the histogram is:
 \end{align}
 Because $\sum p_i = 1$ and $\sum n_i = N$. Generalizing this to $J$ histogram bins gives the multinomial distribution. The terms $p_j^{n_j}$ and $n_1!$ arise from the binomial distribution of which the multinomial distribution is a generalized form. 
 
+\subsection{Uniform Distribution}
+
 For a uniform distribution the probability $p_j$ of a sample  $x^{(i)}$ lying in the the $j^{th}$ bin is equal to the width of the bin divided by the total width of the distribution, i.e.  $p_j = 1/J$. Each of the histogram bins have identical probabilities with mean bar height  $\mu = NJ$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
 
-Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean  and $\pm 3$ standard deviation lines:
+Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean and $\pm 3$ standard deviation lines. All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
 
+
+\subsection{Gaussian Distribution}
+
+For Gaussian distributions, $p_j$ varies across the distribution.
+
+\begin{align}
+	p_j &= \int_{\delta/2}^{\delta/2}  p(c_j + x) \, dx \\
+    p_j &\approx \delta p(c_j) \mbox{ for } \delta \approx 0
+\end{align}
+
+The mean bar height  $\mu = N$ and variance in bar height $\sigma^2 = NJ(1-J)$. The ratio $\sigma / \mu = \sqrt {(1-J) / NJ}$ and so as $N \to \infty$, $\frac \sigma \mu \to 0$
+
+Figure \ref{fig:hist-dist} of show histogrammed samples for $N=100$,  $N=1000$ and $N=10000$ with theoretical mean and $\pm 3$ standard deviation lines. All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{figures/uniform-bar-distribution.pdf}
   \caption{Histograms of uniformly distributed samples showing mean and standard deviation lines.}
   \label{fig:hist-dist}
 \end{figure}
-
-All the histogram bars are within three standard deviations from the mean and the majority of histogram bars are within one standard deviation from the mean. From the three plots in figure \ref{fig:hist-dist} it can be seen that the standard deviation increases with $N$ but the ratio of the standard deviation to the mean decreases.
 
 
 \section{Functions of random variables}
@@ -96,7 +109,7 @@ Take ${Y_1} = f(X) = aX + b$, and so $f^{-1}(y) = (y - b) / a$ .
 p_{Y_1}(y) &= \left. \frac {p_X(x)} {\frac {dy} {dx}} \right|_{x = f^ {-1} (y)} \nonumber \\
 p_{Y_1}(y) &= \frac 1 a  {p_X \left (\frac {y - b} a \right)}
 \end{align}
-Therefore $Y_1 \sim {\cal N}(y|b, a^2)$ and so a linear function of a Gaussian random variable with zero mean and unit variance creates a general normal density with non-zero mean and non-unity variance.
+Therefore $Y_1 \sim {\cal N}(y|b, a^2)$ and so a linear function of a Gaussian random variable with zero mean and unit variance creates a general Gaussian density with non-zero mean and non-unity variance.
 
 Now take $Y_2 = f(x)=x^2$. Therefore, $\frac{dy}{dx} = 2x$  and $f^{-1}(y) = \pm \sqrt{y}$. Note $f^{-1}(y)$ is multivalued with ${f_1}^{-1}(y) = \sqrt{y}$ and ${f_2}^{-1}(y) = -\sqrt{y}$.
 
